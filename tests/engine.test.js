@@ -1,1 +1,13 @@
-
+import test from 'node:test';import assert from 'node:assert/strict';import * as E from '../src/engine.js';
+const t={id:'t',mine:'a',groups:[{id:'a'},{id:'b'}],people:[],methods:[],status:'Concluída',type:'Internacional',budget:3000};const plan=(id,amount,rate=1)=>({id,trip:'t',category:'Almoço',shares:{a:50,b:50},plan:{amount,rate}});const actual=(id,brl,payments)=>({...plan(id,brl),actual:{brl,payments}});
+test('divisão por família, não por pessoa',()=>{assert.equal(E.sumTrip(t,[plan('h',4000)]).plan,2000)});
+test('cotação em moeda estrangeira',()=>assert.equal(E.planned(plan('x',100,5.5)),550));
+test('previsão não duplica realizado',()=>{let e=actual('x',600,[{group:'a',brl:600}]);let s=E.sumTrip(t,[e,plan('y',800)]);assert.equal(s.actual,300);assert.equal(s.future,400);assert.equal(s.forecast,700)});
+test('acerto entre grupos',()=>assert.deepEqual(E.settlement(t,[actual('x',4000,[{group:'a',brl:4000}])]),{a:2000,b:-2000}));
+test('custo médio com duas compras e baixa',()=>{let ms=[{id:'1',date:'2026-01-01',type:'buy',account:'w',currency:'COP',amount:540000,brl:1000},{id:'2',date:'2026-01-02',type:'buy',account:'w',currency:'COP',amount:1120000,brl:2000}];let es=[{id:'e',actual:{date:'2026-01-03',payments:[{account:'w',track:true,debitCurrency:'COP',debitAmount:100000}]}}];let l=E.ledger(ms,es,true);assert.equal(l.slots[0].balance,1560000);assert.equal(l.costs['e-0'],180.72)});
+test('transferência preserva custo e saldo',()=>{let ms=[{id:'1',date:'2026-01-01',type:'buy',account:'w',currency:'USD',amount:100,brl:550},{id:'2',date:'2026-01-02',type:'transfer',account:'w',currency:'USD',amount:20,target:'cash',targetCurrency:'COP',received:80000}];let l=E.ledger(ms,[],true);assert.equal(l.slots[0].balance,80);assert.equal(l.slots[1].cost,110)});
+test('bloqueia saldo insuficiente',()=>assert.throws(()=>E.ledger([{id:'1',date:'2026-01-01',type:'transfer',account:'w',currency:'USD',amount:20,target:'cash',targetCurrency:'USD',received:20}],[],true)));
+test('café após check-in até checkout',()=>assert.deepEqual(E.breakfastDays({start:'2026-12-08',end:'2026-12-12',breakfast:true}),['2026-12-09','2026-12-10','2026-12-11','2026-12-12']));
+test('histórico usa só realizado e parte do grupo',()=>{let r=E.analysis([t],[plan('p',900),actual('x',200,[{group:'a',brl:200}])],'Internacional');assert.equal(r[0].avg,100);assert.equal(r[0].count,1)});
+test('backup vazio válido',()=>assert.equal(E.validateBackup(E.empty()).version,1));
+test('limite diário não duplica gastos avulsos',()=>{let d=E.today(),e={...plan('daily',300),category:'Alimentação geral',date:d,envelope:true,shares:{a:100}},x={id:'x',trip:'t',date:d,category:'Almoço',shares:{a:100},actual:{brl:180,payments:[]}};let s=E.sumTrip(t,[e,x]);assert.equal(s.actual,180);assert.equal(s.future,120);assert.equal(s.forecast,300)});
