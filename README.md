@@ -1,4 +1,4 @@
-# Atualização 0.3.0
+# Atualização 1.3.1
 
 A versão acrescenta sincronização opcional via Supabase. Veja [SINCRONIZACAO.md](SINCRONIZACAO.md) antes de publicar; as instruções abaixo são históricas da versão anterior.
 

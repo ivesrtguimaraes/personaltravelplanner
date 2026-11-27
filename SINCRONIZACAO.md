@@ -1,4 +1,4 @@
-# Personal Travel Planner 0.3.0 — sincronização
+# Personal Travel Planner 1.3.1 — sincronização
 
 **Antes de qualquer atualização: exporte o backup JSON do Mac e guarde-o no iCloud Drive ou em pasta privada. Se houver registros no iPhone, exporte-os também.** Não envie backups ao GitHub. Mantenha o mesmo repositório, endereço e navegador.
 
@@ -21,16 +21,16 @@ Descompacte o ZIP. Abra `src/cloud-config.js` em um editor de texto simples ou u
 export const cloudConfig={url:'https://SEU-PROJETO.supabase.co',key:'sb_publishable_SUA_CHAVE'};
 ```
 
-Não use as palavras de exemplo literalmente. Não mude a chave de armazenamento local. Envie os arquivos e pastas da versão 0.3.0 à raiz do **mesmo** repositório, substituindo os anteriores, e faça commit. Se já tiver configurado cloud-config.js, preserve sua configuração em futuras atualizações. `SUPABASE.sql` contém somente a estrutura e políticas, sem dados pessoais. Não envie nenhum JSON de backup.
+Não use as palavras de exemplo literalmente. Não mude a chave de armazenamento local. Envie os arquivos e pastas da versão 1.3.1 à raiz do **mesmo** repositório, substituindo os anteriores, e faça commit. Se já tiver configurado cloud-config.js, preserve sua configuração em futuras atualizações. `SUPABASE.sql` contém somente a estrutura e políticas, sem dados pessoais. Não envie nenhum JSON de backup.
 
-Aguarde a publicação em Actions; abra o endereço existente e confira a versão 0.3.0. Recarregue a página se ainda exibir a anterior. Não apague dados do navegador. A versão funciona sem configuração de nuvem também.
+Aguarde a publicação em Actions; abra o endereço existente e confira a versão 1.3.1. Recarregue a página se ainda exibir a anterior. Não apague dados do navegador. A versão funciona sem configuração de nuvem também.
 
 ## 3. Primeiro envio — SOMENTE NO MAC
 
 1. Confira seus dados existentes antes do login. Se não aparecerem, pare e confira o endereço/navegador ou importe o backup previamente exportado.
 2. Perfil > Sincronização Mac e iPhone > Entrar na minha conta. Use o e-mail e senha do usuário criado em Authentication, não as credenciais administrativas do Supabase.
 3. Quando aparecer “Nuvem vazia”, escolha **Usar dados deste aparelho**. Confirme. Aguarde “Sincronizado”. Não envie os dados de um aparelho vazio primeiro.
-4. No iPhone, abra o mesmo URL (ou o app instalado), confira versão 0.3.0 e entre com o mesmo e-mail e senha. Se não houver dados locais, os dados do Mac serão carregados. Se houver registros diferentes, o app mostrará conflito: não escolha uma versão sem exportar ambas e conferir quais registros precisam ser preservados.
+4. No iPhone, abra o mesmo URL (ou o app instalado), confira versão 1.3.1 e entre com o mesmo e-mail e senha. Se não houver dados locais, os dados do Mac serão carregados. Se houver registros diferentes, o app mostrará conflito: não escolha uma versão sem exportar ambas e conferir quais registros precisam ser preservados.
 5. Faça um teste com um lançamento fictício no iPhone. Aguarde a indicação Sincronizado, confira no Mac e exclua o teste. Repita em sentido inverso. Exporte backup depois da confirmação.
 
 ## 4. Como funciona

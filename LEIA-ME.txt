@@ -1,0 +1,31 @@
+Personal Travel Planner — atualização 1.3.1
+
+O que foi corrigido
+- Corrigido o erro de sincronização que gerava as mensagens “Can only call Window.fetch on instances of Window” e “fetch called on an object that does not implement interface Window”.
+- Interface mais limpa na área de sincronização e backup.
+- Ícone do app redesenhado.
+- Ícone da aba Viagens ajustado.
+- Versão atualizada para 1.3.1.
+- Removido o texto extra acima da versão.
+
+Como atualizar sem perder a configuração da nuvem
+1. Exporte um backup dentro do app antes de atualizar.
+2. Envie os arquivos deste pacote para o MESMO repositório do GitHub, substituindo os arquivos de mesmo nome.
+3. Preserve o arquivo src/cloud-config.js que já está no seu repositório. Este pacote não precisa substituir esse arquivo.
+4. Faça o commit e aguarde a publicação no GitHub Pages.
+5. Reabra o app no computador e no iPhone. Se o iPhone ainda mostrar a versão antiga, feche o app instalado e abra novamente.
+
+Arquivos principais desta atualização
+- index.html
+- style.css
+- manifest.webmanifest
+- sw.js
+- icon-192.png
+- icon-512.png
+- src/app.js
+- src/cloud.js
+- package.json
+
+Validação
+- 24 testes automatizados aprovados.
+- O problema de fetch foi corrigido com vínculo explícito ao contexto global.
