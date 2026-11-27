@@ -4,7 +4,7 @@ export function canonical(x){if(x===null||typeof x!=='object')return JSON.string
 export async function digest(x){const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(canonical(x)));return Array.from(new Uint8Array(h),b=>b.toString(16).padStart(2,'0')).join('')}
 export function decision({remote,base,localHash,remoteHash,localEmpty}){if(!remote)return base?'missing':'seed';if(localHash===remoteHash)return 'equal';if(!base)return localEmpty?'pull':'conflict';if(localHash===base.hash)return 'pull';if(remote.revision===base.revision&&remoteHash===base.hash)return 'push';return 'conflict'}
 export class Cloud {
- constructor({storage=localStorage,request=fetch,read,apply,validate,isEmpty,canApply,status,config=cloudConfig}){Object.assign(this,{storage,request,read,apply,validate,isEmpty,canApply,status,config});this.busy=false;this.last='';this.session=this.get(AUTH);this.timer=null;this.configured=/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(config.url)&&/^sb_publishable_[A-Za-z0-9_-]+$/.test(config.key);if(this.session?.url!==config.url)this.session=null}
+ constructor({storage=localStorage,request=globalThis.fetch.bind(globalThis),read,apply,validate,isEmpty,canApply,status,config=cloudConfig}){Object.assign(this,{storage,request,read,apply,validate,isEmpty,canApply,status,config});this.busy=false;this.last='';this.session=this.get(AUTH);this.timer=null;this.configured=/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(config.url)&&/^sb_publishable_[A-Za-z0-9_-]+$/.test(config.key);if(this.session?.url!==config.url)this.session=null}
  get(k){try{return JSON.parse(this.storage.getItem(k)||'null')}catch{return null}}
  put(k,v){this.storage.setItem(k,JSON.stringify(v))}
  setStatus(s){this.last=s;this.status?.(s)}
