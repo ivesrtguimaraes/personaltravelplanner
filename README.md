@@ -1,3 +1,13 @@
+# Atualização 0.3.0
+
+A versão acrescenta sincronização opcional via Supabase. Veja [SINCRONIZACAO.md](SINCRONIZACAO.md) antes de publicar; as instruções abaixo são históricas da versão anterior.
+
+# Personal Travel Planner — versão 0.2.0
+
+**Leia primeiro [ATUALIZACAO.md](ATUALIZACAO.md)** para preservar os dados existentes e conhecer as mudanças. O manual abaixo é o histórico da versão 0.1.0; nomes e algumas telas foram atualizados.
+
+---
+
 # Travel Planner — v0.1.0 (MVP financeiro)
 
 Aplicativo web pessoal em português, com interface escura e responsiva. Código aberto no repositório que você criar, dados financeiros locais. Sem login, servidor de banco de dados, IA ou conta adicional. Nenhuma conexão bancária. Todos os valores de demonstração ficam fora do aplicativo: ele começa vazio.
